@@ -11,7 +11,7 @@ const Item: React.FC<ItemProps> = ({ name, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="w-20 h-20 bg-gray-200 flex items-center justify-center m-2 cursor-pointer hover:bg-gray-300 rounded-lg"
+      className="w-40 h-40 bg-gray-200 flex items-center justify-center m-2 cursor-pointer hover:bg-gray-300 rounded-lg"
     >
       {name}
     </div>
