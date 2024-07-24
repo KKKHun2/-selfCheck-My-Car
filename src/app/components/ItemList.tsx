@@ -7,13 +7,11 @@ import Popup from './Popup';
 import AddItemPopup from './AddItemPopup';
 
 const ItemList: React.FC = () => {
-  // 상태 정의
-  const [items, setItems] = useState<{ name: string, count: number, records: { part: string, date: string, price: string }[] }[]>([]);
-  const [selectedItem, setSelectedItem] = useState<{ name: string, records: { part: string, date: string, price: string }[] } | null>(null);
+  const [items, setItems] = useState<{ name: string, count: number, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] }[]>([]);
+  const [selectedItem, setSelectedItem] = useState<{ name: string, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] } | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const [showAddItemPopup, setShowAddItemPopup] = useState(false);
 
-  // 컴포넌트 마운트 시 로컬 스토리지에서 아이템 로드
   useEffect(() => {
     const savedItems = localStorage.getItem('items');
     if (savedItems) {
@@ -21,19 +19,16 @@ const ItemList: React.FC = () => {
     }
   }, []);
 
-  // 아이템 클릭 시 팝업 열기
-  const handleItemClick = (item: { name: string, records: { part: string, date: string, price: string }[] }) => {
+  const handleItemClick = (item: { name: string, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] }) => {
     setSelectedItem(item);
     setShowPopup(true);
   };
 
-  // 팝업 닫기
   const handleClosePopup = () => {
     setShowPopup(false);
     setSelectedItem(null);
   };
 
-  // 새 아이템 추가
   const handleAddNewItem = (newItem: { name: string }) => {
     const updatedItems = [...items, { name: newItem.name, count: 0, records: [] }];
     setItems(updatedItems);
@@ -41,17 +36,23 @@ const ItemList: React.FC = () => {
     setShowAddItemPopup(false);
   };
 
-  // 점검 기록 추가
-  const handleAddRecord = (record: { part: string, date: string, price: string }) => {
+  const handleAddRecord = (record: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }) => {
     if (selectedItem) {
-      const updatedItems = items.map(item =>
-        item.name === selectedItem.name
-          ? { ...item, records: [...item.records, record], count: item.count + 1 }
-          : item
-      );
-      setItems(updatedItems);
-      localStorage.setItem('items', JSON.stringify(updatedItems));
-      handleClosePopup();
+      // 기존 기록이 있는지 확인합니다. 같은 날짜가 이미 존재하면 추가하지 않습니다.
+      const recordExists = selectedItem.records.some(r => r.date === record.date);
+
+      if (!recordExists) {
+        const updatedItems = items.map(item =>
+          item.name === selectedItem.name
+            ? { ...item, records: [...item.records, record], count: item.records.length + 1 }
+            : item
+        );
+        setItems(updatedItems);
+        localStorage.setItem('items', JSON.stringify(updatedItems));
+        handleClosePopup();
+      } else {
+        alert('이미 같은 날짜의 점검 기록이 있습니다.');
+      }
     }
   };
 
