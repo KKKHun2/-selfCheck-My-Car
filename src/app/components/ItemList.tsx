@@ -62,7 +62,7 @@ const ItemList: React.FC = () => {
         {items.map((item, index) => (
           <Item
             key={index}
-            name={`${item.name} - ${item.count} 횟수`}
+            name={`${item.name} - 점검 ${item.count} 회`}
             onClick={() => handleItemClick(item)}
           />
         ))}

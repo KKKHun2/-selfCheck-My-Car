@@ -38,12 +38,14 @@ const AddItemPopup: React.FC<AddItemPopupProps> = ({ onClose, onSave }) => {
             className="mt-1 w-full p-2 border rounded"
           />
         </div>
-        <button
-          onClick={handleSave}
-          className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition"
-        >
-          저장
-        </button>
+        <div className="flex justify-center">
+          <button
+            onClick={handleSave}
+            className="bg-blue-500 text-white py-2 px-4 rounded border hover:bg-blue-600 transition"
+          >
+            저장
+          </button>
+        </div>
       </div>
     </div>
   );

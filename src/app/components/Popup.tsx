@@ -65,14 +65,14 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave }) => {
         >
           <XMarkIcon className="h-6 w-6" />
         </button>
-        <h2 className="text-2xl mb-4 text-center">{item.name}</h2>
+        <h2 className="text-3xl mb-4 text-center">{item.name}</h2>
 
         {/* 점검 기록 */}
         <div className="mb-6">
           <h3 className="text-xl mb-2">점검 기록</h3>
           <ul>
             {sortedRecords.map((record, index) => (
-              <li key={index} className="flex items-center justify-between py-2 px-4 border-b">
+              <li key={index} className="flex items-center justify-between py-2  px-4 border-b">
                 <span>{index + 1}. {record.part} - {record.date} - 공임비: {record.laborCost}원 - 부품비: {record.partsCost}원 - 총가격: {record.totalCost}원</span>
                 <button onClick={() => handleDeleteRecord(record)} className="text-red-500 hover:text-red-700">
                   <TrashIcon className="h-5 w-5" />
