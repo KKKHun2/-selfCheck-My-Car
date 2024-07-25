@@ -5,12 +5,14 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 import Item from './Item';
 import Popup from './Popup';
 import AddItemPopup from './AddItemPopup';
+import YearlyReportPopup from './YearlyReportPopup';
 
 const ItemList: React.FC = () => {
   const [items, setItems] = useState<{ name: string, count: number, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] }[]>([]);
   const [selectedItem, setSelectedItem] = useState<{ name: string, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] } | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const [showAddItemPopup, setShowAddItemPopup] = useState(false);
+  const [showYearlyReportPopup, setShowYearlyReportPopup] = useState(false);
 
   useEffect(() => {
     const savedItems = localStorage.getItem('items');
@@ -38,7 +40,6 @@ const ItemList: React.FC = () => {
 
   const handleAddRecord = (record: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }) => {
     if (selectedItem) {
-      // 기존 기록이 있는지 확인합니다. 같은 날짜가 이미 존재하면 추가하지 않습니다.
       const recordExists = selectedItem.records.some(r => r.date === record.date);
 
       if (!recordExists) {
@@ -56,13 +57,31 @@ const ItemList: React.FC = () => {
     }
   };
 
+  const handleShowYearlyReport = () => {
+    setShowYearlyReportPopup(true);
+  };
+
+  const handleCloseYearlyReportPopup = () => {
+    setShowYearlyReportPopup(false);
+  };
+
+  const handleDeleteItem = () => {
+    if (selectedItem) {
+      const updatedItems = items.filter(item => item.name !== selectedItem.name);
+      setItems(updatedItems);
+      localStorage.setItem('items', JSON.stringify(updatedItems));
+      handleClosePopup();
+    }
+  };
+
   return (
     <div className="flex flex-col items-center mt-4">
       <div className="flex flex-wrap justify-center">
         {items.map((item, index) => (
           <Item
             key={index}
-            name={`${item.name} - 점검 ${item.count} 회`}
+            name={item.name}
+            count={item.count}
             onClick={() => handleItemClick(item)}
           />
         ))}
@@ -79,12 +98,25 @@ const ItemList: React.FC = () => {
           item={selectedItem}
           onClose={handleClosePopup}
           onSave={handleAddRecord}
+          onDelete={handleDeleteItem} // 팝업에 삭제 기능을 전달합니다
         />
       )}
       {showAddItemPopup && (
         <AddItemPopup
           onClose={() => setShowAddItemPopup(false)}
           onSave={handleAddNewItem}
+        />
+      )}
+      <button
+        onClick={handleShowYearlyReport}
+        className="mt-4 p-3 rounded bg-white text-gray-800 hover:bg-gray-200 transition"
+      >
+        이번 년도 점검 내역 보기
+      </button>
+      {showYearlyReportPopup && (
+        <YearlyReportPopup
+          onClose={handleCloseYearlyReportPopup}
+          records={items.flatMap(item => item.records)}
         />
       )}
     </div>
