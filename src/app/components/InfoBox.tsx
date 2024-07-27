@@ -19,7 +19,7 @@ const InfoBox: React.FC<InfoBoxProps> = ({ brand, model, year, mileage, nickname
       </div>
       <div className="flex flex-col gap-3 mt-2 font-medium text-xl sm:flex-row sm:gap-10 sm:mt-4 pb-2">
         <p><strong>모델명:</strong> {model}</p>
-        <p><strong>연식:</strong> {year}</p>
+        <p><strong>연식:</strong> {year} 년</p>
         <p><strong>주행거리:</strong> {mileage} K/m</p>
         <p><strong>별명:</strong> {nickname}</p>
       </div>

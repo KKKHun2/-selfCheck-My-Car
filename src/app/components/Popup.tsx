@@ -127,7 +127,7 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
         <div className="flex justify-center">
           <button
             onClick={handleSave}
-            className="bg-blue-500 text-white py-2 px-4 rounded border hover:bg-blue-600 transition"
+            className="bg-blue-500 text-white py-2 w-full rounded border hover:bg-blue-600 transition"
           >
             저장
           </button>
