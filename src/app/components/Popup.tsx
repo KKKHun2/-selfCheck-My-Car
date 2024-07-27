@@ -116,9 +116,9 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
           <input
             type="text"
             name="totalCost"
-            value={newRecord.totalCost}
-            onChange={handleChange}
+            value={String(Number(newRecord.laborCost) + Number(newRecord.partsCost))}
             className="mt-1 w-full p-2 border rounded"
+            readOnly
           />
         </div>
         <div className="flex justify-center">
