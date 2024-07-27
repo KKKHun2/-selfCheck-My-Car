@@ -28,9 +28,9 @@ const AddItemPopup: React.FC<AddItemPopupProps> = ({ onClose, onSave }) => {
         >
           ✕
         </button>
-        <h2 className="text-2xl mb-4">아이템 추가</h2>
+        <h2 className="text-xl mb-4">점검 내역 추가</h2>
         <div className="mb-4">
-          <label className="block text-gray-700">아이템 이름</label>
+          <label className="block text-gray-700">점검 사항</label>
           <input
             type="text"
             value={name}

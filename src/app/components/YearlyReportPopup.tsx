@@ -17,7 +17,8 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
   // 최신 항목이 앞에 오도록 역순으로 정렬
   const sortedRecords = [...filteredRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const totalSum = sortedRecords.reduce((sum, record) => sum + parseFloat(record.totalCost), 0);
+  // 총합 계산할 때 숫자로 변환
+  const totalSum = sortedRecords.reduce((sum, record) => sum + parseFloat(record.totalCost.replace(/,/g, '')), 0);
 
   const totalPages = Math.ceil(sortedRecords.length / recordsPerPage);
 
@@ -33,22 +34,22 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl max-h-[90vh] overflow-hidden">
+      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl max-h-[85vh] overflow-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
         >
           ✕
         </button>
-        <h2 className="text-2xl mb-4">{currentYear}년 점검 내역</h2>
+        <h2 className="text-xl mb-4">{currentYear}년 점검 내역</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           {paginatedRecords.map((record, index) => (
             <div key={index} className="border rounded p-4 shadow-sm">
-              <p><strong>날짜:</strong> {record.date}</p>
-              <p><strong>부품:</strong> {record.part}</p>
-              <p><strong>공임비:</strong> {record.laborCost}</p>
-              <p><strong>부품비:</strong> {record.partsCost}</p>
-              <p><strong>총합:</strong> {record.totalCost}</p>
+              <p className='text-sm'><strong >날짜:</strong> {record.date}</p>
+              <p className='text-sm'><strong>부품:</strong> {record.part}</p>
+              <p className='text-sm'><strong>공임비:</strong> {record.laborCost} 원</p>
+              <p className='text-sm'><strong>부품비:</strong> {record.partsCost} 원</p>
+              <p className='text-sm'><strong>총합:</strong> {record.totalCost} 원</p>
             </div>
           ))}
         </div>
@@ -79,8 +80,8 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
             다음
           </button>
         </div>
-        <div className="font-bold text-xl justify-center  mt-6">
-          <p>총합: {totalSum}</p>
+        <div className="font-bold text-xl justify-center mt-6">
+          <p>총합: {totalSum.toLocaleString()} 원</p>
         </div>
       </div>
     </div>
