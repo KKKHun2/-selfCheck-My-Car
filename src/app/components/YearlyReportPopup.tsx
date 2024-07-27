@@ -79,7 +79,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
             다음
           </button>
         </div>
-        <div className="font-bold mt-4">
+        <div className="font-bold text-xl justify-center  mt-6">
           <p>총합: {totalSum}</p>
         </div>
       </div>

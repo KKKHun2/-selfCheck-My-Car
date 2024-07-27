@@ -3,15 +3,23 @@
 import React, { useState } from 'react';
 import { XMarkIcon, TrashIcon } from '@heroicons/react/24/solid';
 
+interface Record {
+  part: string;
+  date: string;
+  laborCost: string;
+  partsCost: string;
+  totalCost: string;
+}
+
 interface PopupProps {
-  item: { name: string; records: { part: string; date: string; laborCost: string; partsCost: string; totalCost: string }[] };
+  item: { name: string; records: Record[] };
   onClose: () => void;
-  onSave: (record: { part: string; date: string; laborCost: string; partsCost: string; totalCost: string }) => void;
+  onSave: (record: Record) => void;
   onDelete: () => void;
 }
 
 const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
-  const [newRecord, setNewRecord] = useState({ part: '', date: '', laborCost: '', partsCost: '', totalCost: '' });
+  const [newRecord, setNewRecord] = useState<Record>({ part: '', date: '', laborCost: '', partsCost: '', totalCost: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewRecord({ ...newRecord, [e.target.name]: e.target.value });
@@ -21,6 +29,16 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
     onSave(newRecord);
     setNewRecord({ part: '', date: '', laborCost: '', partsCost: '', totalCost: '' });
   };
+
+  const handleDeleteRecord = (recordToDelete: Record) => {
+    const updatedRecords = item.records.filter(record => record !== recordToDelete);
+    item.records = updatedRecords;
+    // Save updated records to localStorage or wherever necessary
+    localStorage.setItem('items', JSON.stringify(updatedRecords));
+    onClose();
+  };
+
+  const sortedRecords = item.records.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -39,6 +57,19 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
           >
             <TrashIcon className="h-6 w-6 " />
           </button>
+        </div>
+        <div className="mb-6">
+          <h3 className="text-xl mb-2">점검 기록</h3>
+          <ul>
+            {sortedRecords.map((record, index) => (
+              <li key={index} className="flex items-center justify-between py-2 px-4 border-b">
+                <span>{index + 1}. {record.part} - {record.date} - 공임비: {record.laborCost}원 - 부품비: {record.partsCost}원 - 총가격: {record.totalCost}원</span>
+                <button onClick={() => handleDeleteRecord(record)} className="text-red-500 hover:text-red-700">
+                  <TrashIcon className="h-5 w-5" />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">부품명</label>
