@@ -62,11 +62,14 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
           <h3 className="text-xl mb-2">점검 기록</h3>
           <ul>
             {sortedRecords.map((record, index) => (
-              <li key={index} className="flex items-center justify-between py-2 px-4 border-b">
-                <span>{index + 1}. {record.part} - {record.date} - 공임비: {record.laborCost}원 - 부품비: {record.partsCost}원 - 총가격: {record.totalCost}원</span>
-                <button onClick={() => handleDeleteRecord(record)} className="text-red-500 hover:text-red-700">
-                  <TrashIcon className="h-5 w-5" />
-                </button>
+              <li key={index} className="flex flex-col items-start justify-center py-2 border-b">
+                <div>{index + 1}. {record.part} - {record.date}</div>
+                <div>공임비: {record.laborCost}원 - 부품비: {record.partsCost}원 </div>
+                <div className='flex items-center'>총가격: {record.totalCost}원
+                  <button onClick={() => handleDeleteRecord(record)} className="text-red-500 hover:text-red-700">
+                    <TrashIcon className="h-5 w-5 ml-2" />
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
