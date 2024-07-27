@@ -24,9 +24,11 @@ const Home: React.FC = () => {
       <h1 className="text-4xl text-white mb-4">자동차 셀프점검!</h1>
       <button
         onClick={handleStart}
-        className="bg-white text-blue-500 py-2 px-4 rounded-full shadow-lg hover:bg-gray-100 transition"
+        className="bg-white text-blue-500 mt-4 py-10 px-24 rounded-full shadow-lg hover:bg-gray-300 transition"
       >
-        시작하기
+        <div className=' text-3xl '>
+          시작하기
+        </div>
       </button>
     </div>
   );
