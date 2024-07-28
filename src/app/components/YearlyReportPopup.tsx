@@ -34,7 +34,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl max-h-[85vh] overflow-auto">
+      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl max-h-[90vh] overflow-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -44,7 +44,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
         <h2 className="text-xl mb-4">{currentYear}년 점검 내역</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           {paginatedRecords.map((record, index) => (
-            <div key={index} className="border rounded p-4 shadow-sm">
+            <div key={index} className="border rounded p-2 shadow-sm">
               <p className='text-sm'><strong >날짜:</strong> {record.date}</p>
               <p className='text-sm'><strong>부품:</strong> {record.part}</p>
               <p className='text-sm'><strong>공임비:</strong> {record.laborCost} 원</p>
@@ -53,7 +53,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
             </div>
           ))}
         </div>
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex justify-between items-center mt-2">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -80,7 +80,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
             다음
           </button>
         </div>
-        <div className="font-bold text-xl justify-center mt-6">
+        <div className="font-bold text-xl justify-center mt-4">
           <p>총합: {totalSum.toLocaleString()} 원</p>
         </div>
       </div>
