@@ -88,7 +88,7 @@ const ItemList: React.FC = () => {
       </div>
       <button
         onClick={() => setShowAddItemPopup(true)}
-        className="mt-10 p-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition flex items-center justify-center"
+        className="mt-4 p-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition flex items-center justify-center"
         style={{ width: '60px', height: '60px' }}
       >
         <PlusIcon className="h-6 w-6" />

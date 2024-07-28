@@ -42,7 +42,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
           ✕
         </button>
         <h2 className="text-xl mb-4">{currentYear}년 점검 내역</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
           {paginatedRecords.map((record, index) => (
             <div key={index} className="border rounded p-2 shadow-sm">
               <p className='text-sm'><strong >날짜:</strong> {record.date}</p>
