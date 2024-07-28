@@ -12,7 +12,7 @@ interface InfoBoxProps {
 
 const InfoBox: React.FC<InfoBoxProps> = ({ brand, model, year, mileage, nickname }) => {
   return (
-    <div className="bg-gray-800 text-white pt-4 p-8 rounded-lg shadow-lg w-full max-w-full sm:p-8">
+    <div className="bg-gray-800 text-white pt-4 p-6 rounded-lg shadow-lg w-full max-w-full sm:p-4">
       <h2 className="text-xl font-bold">Car Maintenance Records</h2>
       <div className="mt-4 font-medium  sm:mt-6 sm:text-base">
         <p className='text-lg'><strong>브랜드:</strong> {brand}</p>
