@@ -6,13 +6,15 @@ import Item from './Item';
 import Popup from './Popup';
 import AddItemPopup from './AddItemPopup';
 import YearlyReportPopup from './YearlyReportPopup';
+import { v4 as uuidv4 } from 'uuid';
 
 const ItemList: React.FC = () => {
-  const [items, setItems] = useState<{ name: string, count: number, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] }[]>([]);
-  const [selectedItem, setSelectedItem] = useState<{ name: string, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] } | null>(null);
+  const [items, setItems] = useState<{ id: string, name: string, count: number, records: { id: string, part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] }[]>([]);
+  const [selectedItem, setSelectedItem] = useState<{ id: string, name: string, records: { id: string, part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] } | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const [showAddItemPopup, setShowAddItemPopup] = useState(false);
   const [showYearlyReportPopup, setShowYearlyReportPopup] = useState(false);
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const savedItems = localStorage.getItem('items');
@@ -21,7 +23,7 @@ const ItemList: React.FC = () => {
     }
   }, []);
 
-  const handleItemClick = (item: { name: string, records: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] }) => {
+  const handleItemClick = (item: { id: string, name: string, records: { id: string, part: string, date: string, laborCost: string, partsCost: string, totalCost: string }[] }) => {
     setSelectedItem(item);
     setShowPopup(true);
   };
@@ -32,28 +34,53 @@ const ItemList: React.FC = () => {
   };
 
   const handleAddNewItem = (newItem: { name: string }) => {
-    const updatedItems = [...items, { name: newItem.name, count: 0, records: [] }];
-    setItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
-    setShowAddItemPopup(false);
+    const itemExists = items.some(item => item.name === newItem.name);
+
+    if (itemExists) {
+      alert('같은 이름의 아이템이 이미 존재합니다.');
+    } else {
+      const updatedItems = [...items, { id: uuidv4(), name: newItem.name, count: 0, records: [] }];
+      setItems(updatedItems);
+      localStorage.setItem('items', JSON.stringify(updatedItems));
+      setShowAddItemPopup(false);
+    }
   };
 
   const handleAddRecord = (record: { part: string, date: string, laborCost: string, partsCost: string, totalCost: string }) => {
     if (selectedItem) {
-      const recordExists = selectedItem.records.some(r => r.date === record.date);
+      const updatedRecord = { ...record, id: uuidv4() }; // 각 기록에 uuid 추가
+      const updatedItems = items.map(item =>
+        item.id === selectedItem.id
+          ? { ...item, records: [...item.records, updatedRecord], count: item.records.length + 1 }
+          : item
+      );
+      setItems(updatedItems);
+      localStorage.setItem('items', JSON.stringify(updatedItems));
+      handleClosePopup();
+    }
+  };
 
-      if (!recordExists) {
-        const updatedItems = items.map(item =>
-          item.name === selectedItem.name
-            ? { ...item, records: [...item.records, record], count: item.records.length + 1 }
-            : item
-        );
-        setItems(updatedItems);
-        localStorage.setItem('items', JSON.stringify(updatedItems));
-        handleClosePopup();
-      } else {
-        alert('이미 같은 날짜의 점검 기록이 있습니다.');
-      }
+  const handleDeleteRecord = (recordId: string) => {
+    if (selectedItem) {
+      const updatedItems = items.map(item => {
+        if (item.id === selectedItem.id) {
+          const updatedRecords = item.records.filter(record => record.id !== recordId);
+          return { ...item, records: updatedRecords, count: updatedRecords.length }; // count 업데이트
+        }
+        return item;
+      });
+      setItems(updatedItems);
+      localStorage.setItem('items', JSON.stringify(updatedItems));
+      handleClosePopup();
+    }
+  };
+
+  const handleDeleteItem = () => {
+    if (selectedItem) {
+      const updatedItems = items.filter(item => item.id !== selectedItem.id);
+      setItems(updatedItems);
+      localStorage.setItem('items', JSON.stringify(updatedItems));
+      handleClosePopup();
     }
   };
 
@@ -65,21 +92,12 @@ const ItemList: React.FC = () => {
     setShowYearlyReportPopup(false);
   };
 
-  const handleDeleteItem = () => {
-    if (selectedItem) {
-      const updatedItems = items.filter(item => item.name !== selectedItem.name);
-      setItems(updatedItems);
-      localStorage.setItem('items', JSON.stringify(updatedItems));
-      handleClosePopup();
-    }
-  };
-
   return (
     <div className="flex flex-col items-center mt-4">
       <div className="flex flex-wrap justify-center">
         {items.map((item, index) => (
           <Item
-            key={index}
+            key={item.id} // id를 key로 사용
             name={item.name}
             count={item.count}
             onClick={() => handleItemClick(item)}
@@ -98,7 +116,8 @@ const ItemList: React.FC = () => {
           item={selectedItem}
           onClose={handleClosePopup}
           onSave={handleAddRecord}
-          onDelete={handleDeleteItem} // 팝업에 삭제 기능을 전달합니다
+          onDeleteRecord={handleDeleteRecord} // 기록 삭제 콜백
+          onDeleteItem={handleDeleteItem} // 아이템 삭제 콜백
         />
       )}
       {showAddItemPopup && (
@@ -109,9 +128,9 @@ const ItemList: React.FC = () => {
       )}
       <button
         onClick={handleShowYearlyReport}
-        className="mt-4 p-3 rounded bg-white text-gray-800 hover:bg-gray-200 transition"
+        className="mt-4 p-3 rounded bg-white font-semibold text-gray-800 hover:bg-gray-200 transition"
       >
-        이번 년도 점검 내역 보기
+        {currentYear}년도 점검 내역 보기
       </button>
       {showYearlyReportPopup && (
         <YearlyReportPopup
