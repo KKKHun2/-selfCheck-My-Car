@@ -60,7 +60,7 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
           <XMarkIcon className="h-6 w-6" />
         </button>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl flex-grow text-center ml-6">{item.name}</h2>
+          <h2 className="text-2xl font-bold flex-grow text-center ml-6">{item.name}</h2>
           <button
             onClick={onDelete}
             className="text-red-500 hover:text-red-700 mr-6"
@@ -69,7 +69,7 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
           </button>
         </div>
         <div className="mb-2">
-          <h3 className="text-xl">점검 기록</h3>
+          <h3 className="text-xl font-semibold">점검 기록</h3>
           <ul>
             {sortedRecords.map((record, index) => (
               <li key={index} className="flex flex-col items-start justify-center py-2 border-b">

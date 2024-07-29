@@ -60,7 +60,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
         >
           ✕
         </button>
-        <h2 className="text-xl mb-4">{currentYear}년 점검 내역</h2>
+        <h2 className="text-xl font-bold mb-4">{currentYear}년 점검 내역</h2>
         <div className="flex justify-between items-center mb-4">
           <div className="flex space-x-2">
             <button
