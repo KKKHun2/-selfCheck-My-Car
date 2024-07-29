@@ -52,7 +52,7 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center  bg-black bg-opacity-50">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md max-h-[90vh] overflow-auto ">
+      <div className="relative bg-white p-6 rounded-lg shadow-lg w-[85vw] max-w-md max-h-[90vh] overflow-auto ">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
@@ -69,7 +69,7 @@ const Popup: React.FC<PopupProps> = ({ item, onClose, onSave, onDelete }) => {
           </button>
         </div>
         <div className="mb-2">
-          <h3 className="text-xl mb-2">점검 기록</h3>
+          <h3 className="text-xl">점검 기록</h3>
           <ul>
             {sortedRecords.map((record, index) => (
               <li key={index} className="flex flex-col items-start justify-center py-2 border-b">
