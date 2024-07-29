@@ -100,7 +100,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
             </div>
           ))}
         </div>
-        <div className="flex justify-between items-center mt-2">
+        <div className="flex justify-between items-center mb-4">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -127,7 +127,7 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
             다음
           </button>
         </div>
-        <div className="font-bold text-xl justify-center mt-4">
+        <div className="font-bold text-xl justify-center">
           <p>총합: {totalSum.toLocaleString()} 원</p>
         </div>
       </div>
