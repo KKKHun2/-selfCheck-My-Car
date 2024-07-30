@@ -1,29 +1,40 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import InfoBox from '../components/InfoBox';
 import ItemList from '../components/ItemList';
 
 const Dashboard: React.FC = () => {
   const [info, setInfo] = useState<{ brand: string; model: string; year: number; mileage: number; nickname: string } | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    // 로컬 스토리지에서 정보 읽기
     const storedInfo = localStorage.getItem('carInfo');
     if (storedInfo) {
       const parsedInfo = JSON.parse(storedInfo);
       setInfo({
         brand: parsedInfo.brand,
         model: parsedInfo.model,
-        year: parseInt(parsedInfo.year, 10),  // Ensure year is a number
-        mileage: parsedInfo.mileage,  // Default value for mileage
+        year: parseInt(parsedInfo.year, 10),
+        mileage: parsedInfo.mileage,
         nickname: parsedInfo.nickname
       });
     }
   }, []);
 
   if (!info) {
-    return <div className="flex items-center justify-center h-screen text-white">정보가 없습니다. 입력 페이지로 이동하세요.</div>;
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-white">
+        기록된 정보가 없습니다. 정보 페이지에서 정보 입력 부탁드려요!
+        <button
+          onClick={() => router.push('/firstStep')}
+          className="mt-4 p-3 rounded bg-gray-200 text-black hover:bg-gray-400 transition"
+        >
+          입력 페이지로 이동
+        </button>
+      </div>
+    );
   }
 
   return (
