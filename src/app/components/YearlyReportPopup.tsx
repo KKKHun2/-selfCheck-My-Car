@@ -65,27 +65,27 @@ const YearlyReportPopup: React.FC<YearlyReportPopupProps> = ({ onClose, records 
           <div className="flex space-x-2">
             <button
               onClick={() => handleSortChange('newest')}
-              className={`px-4 py-2 ${sortOrder === 'newest' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
+              className={`px-4 py-2 whitespace-nowrap ${sortOrder === 'newest' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
             >
-              최신순
+              최신!
             </button>
             <button
               onClick={() => handleSortChange('oldest')}
-              className={`px-4 py-2 ${sortOrder === 'oldest' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
+              className={`px-4 py-2 whitespace-nowrap ${sortOrder === 'oldest' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
             >
-              오래된순
+              오랜!
             </button>
             <button
               onClick={() => handleSortChange('expensive')}
-              className={`px-4 py-2 ${sortOrder === 'expensive' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
+              className={`px-4 py-2 whitespace-nowrap ${sortOrder === 'expensive' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
             >
-              비싼순
+              비싼!
             </button>
             <button
               onClick={() => handleSortChange('cheap')}
-              className={`px-4 py-2 ${sortOrder === 'cheap' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
+              className={`px-4 py-2 whitespace-nowrap ${sortOrder === 'cheap' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded hover:bg-gray-300`}
             >
-              저렴한순
+              저렴!
             </button>
           </div>
         </div>
