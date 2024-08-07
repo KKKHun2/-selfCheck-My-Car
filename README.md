@@ -1,25 +1,35 @@
 # 셀프로 만든 자동차 점검 내역 확인 !
 
-처음에 이걸 만들고자 했던 이유가
-차를 산지 5년이 넘어서 교체해야 하는 항목들이 조금씩 생기기 시작했는데
-그때마다 예전 구매내역등을 확인해서 공임비, 부품비등을 일일히 확인해봤는데
-시간도 오래걸리고 구매 쇼핑몰 찾는것도 큰 일이였습니다.
+처음에 이걸 만들고자 했던 이유가 <br />
+차를 산지 5년이 넘어서 교체해야 하는 항목들이 조금씩 생기기 시작했는데 <br />
+그때마다 예전 구매내역등을 확인해서 공임비, 부품비등을 일일히 확인해봤는데 <br />
+시간도 오래걸리고 구매 쇼핑몰 찾는것도 큰 일이였습니다. <br />
 
 <br />
-또한 가격또한 불과 1년전과도 가격차이가 나는것을 발견했고
-단순히 공임비, 부품비 등을 적어서 기억하는것보다는
-따로 페이지를 통해 관리해서 부품비,공임비 등을 기억하고
-수리한 내역과 날짜도 쉽게 확인하고 정기적으로 오일등을 교환할때 도움이 될꺼같아서 시작하게되었고
-기존의 앱등을 왜 사용하지 않는다고 하면은 광고등이 너무 많아 짜증이 생겼고 쓸때없는 알림등 앱 자체의 본질적인 기능보다는
-부수적인게 너무 크다 생각해서 심플하게 기록 저장용으로 만들었습니다.
-
-
+또한 가격또한 불과 1년전과도 가격차이가 나는것을 발견했고 <br />
+단순히 공임비, 부품비 등을 적어서 기억하는것보다는 <br />
+따로 페이지를 통해 관리해서 부품비,공임비 등을 기억하고 <br />
+수리한 내역과 날짜도 쉽게 확인하고 정기적으로 오일등을 교환할때 도움이 될꺼같아서 시작하게되었고 <br />
+기존의 앱등을 왜 사용하지 않는다고 하면은 광고등이 너무 많아 짜증이 생겼고 쓸때없는 알림등 앱 자체의 본질적인 기능보다는 <br />
+부수적인게 너무 크다 생각해서 심플하게 기록 저장용으로 만들었습니다. <br />
 
 
 ## 배포 링크
-https://huncar.vercel.app/
+https://huncar.vercel.app/    
+
+
 ## QR코드 :<br />
 
+<br />
+
+## 프로젝트 시작방법
+
+<strong>npm i </strong><br />
+
+
+<strong>npm run dev</strong>
+
+<br />
 
 
 
@@ -72,15 +82,21 @@ https://huncar.vercel.app/
 <div align=center><h1>📚 FE STACKS</h1></div>
 
 <div align=left>
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
 
-<img src="https://img.shields.io/badge/ReactRouter-CA4245?style=for-the-badge&logo=ReactRouter&logoColor=white">
 
-<img src="https://img.shields.io/badge/Next-21DAFB?style=for-the-badge&logo=ReactRouter&logoColor=white">
+<img src="https://img.shields.io/badge/JavaScript-FFE400?style=for-the-badge&logo=JavaScript&logoColor=white">
 
 <img src="https://img.shields.io/badge/TypeScript-273c75?style=for-the-badge&logo=TypeScript&logoColor=white">
 
-<img src="https://img.shields.io/badge/Tailwind-473c75?style=for-the-badge&logo=styledcomponents&logoColor=white">
+<img src="https://img.shields.io/badge/Next.JS-000000?style=for-the-badge&logo=nextdotjs&logoColor=white">
+
+<img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=TailwindCSS&logoColor=white">
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white">
+
+<img src="https://img.shields.io/badge/ReactRouter-CA4245?style=for-the-badge&logo=ReactRouter&logoColor=white">
 
 </div>
 
