@@ -33,19 +33,42 @@ https://huncar.vercel.app/
 
 
 
+
 # 초기 설정 페이지(/firstStep)
 
-처음에 입력한 정보가 없을시 브랜드,차종,연식,주행거리등을 입력받아서 로컬스토리지로 저장합니다. </br>
-추후 로컬스토리지를 통한 삭제가 아닌 삭제 기능 추가 예정
+1. 시작 화면 웹에서의 화면이지만 모바일에서도 비슷한 비율로 앱을 사용하는 느낌을 주려고했습니다. </br>
 
+<img width="450" height="600" alt="image" src="https://github.com/user-attachments/assets/63ec4e7b-1f21-4854-a151-114dad97727b">
+
+ </br>
+ </br>
+
+2. 처음에 입력한 정보가 없을시 브랜드,차종,연식,주행거리등을 입력받아서 로컬스토리지로 저장합니다. </br>
+<img width="450" height="600" alt="image" src="https://github.com/user-attachments/assets/11ff9af9-060e-48b8-b459-21e50688c9e7">
+
+</br>
+</br>
+
+추후 로컬스토리지를 통한 삭제가 아닌 삭제 기능 추가 예정
 
 
 
 
 # 메인화면(/dashboard)
 
-여기서 설정페이지에서 입력한 정보가 화면 상단에 보이고 </br>
-아래에는 + 아이콘을 통한 점검내역 추가가 가능합니다.
+여기서 설정페이지에서 입력한 정보가 화면 상단에 보이고 
+
+</br>
+
+아래에는 + 아이콘을 통한 점검내역 추가가 가능합니다. 
+
+</br>
+
+테일윈드를 사용해서 css를 꾸몄다보니 모바일에서도 앱처럼 화면에 맞춘 동작이 가능합니다. 
+
+</br>
+
+<img width="450" height="600" alt="image" src="https://github.com/user-attachments/assets/0a34952e-5d1b-4063-9340-f391713ead7b">
 
 
 
@@ -53,12 +76,22 @@ https://huncar.vercel.app/
 
 ## 점검 내역 추가
 
-추가는 아이템 추가 팝업을 통해 점검 이유등을 입력하고 </br>
+추가는 아이템 추가 팝업을 통해 점검 사항을 입력하고 </br>
+
+<img width="483" alt="image" src="https://github.com/user-attachments/assets/af98bd84-6c6e-4605-a9e6-f5aa10232f15">
 
 
-추가된 아이템을 클릭해 점검 사항,점검 날짜, 점검 날짜, </br>
-공임비,부품비 등을 입력해서 총 가격 확인 가능 합니다. </br>
-여기서 점검 목록 삭제, 점검 내역삭제등이 가능합니다.
+추가된 아이템을 클릭해 점검 사항,점검 날짜, 점검 날짜, 
+
+</br>
+
+공임비,부품비 등을 입력해서 총 가격 확인 가능 합니다. 
+
+</br>
+
+여기서 이전에 입력했던 같은 항목의 정비 내역도 보이고 점검 내역등도 삭제 가능합니다.
+
+<img width="450" height="600"  alt="image" src="https://github.com/user-attachments/assets/cd04872e-b8b8-439c-b0f5-8f5d1a25703f">
 
 
 ## 년간 점검 내역 확인
@@ -66,7 +99,12 @@ https://huncar.vercel.app/
 년간 점검 내역 확인 가능합니다.
 가격 비싼순, 저렴한 순, 오래된 순, 최신순등 기록이 쌓이면서 쉽게 확인이 가능하도록 버튼으로  </br>
 내역위에 설정하였고 이렇게 했을때 년간 차에 얼마만큼의 금액을 썻는지 기록하기 좋을꺼 같아서 설정했습니다. </br> </br>
-지금은 단순히 년간으로 나오지만 추후 년도별 확인 가능하도록 기능 추가예정입니다.
+지금은 단순히 년간으로 나오지만 추후 년도별 확인 가능하도록 기능 추가예정입니다.</br>
+css도 반응형 화면으로 화면 크기에 맞게 아이템 배치나 배열이 바뀌게 동작하도록 했습니다.
+
+<img src="https://github.com/user-attachments/assets/c9e2a630-e9bf-43fe-bb9e-d3f409f95817" width="1000"> </br>
+
+<img src="https://github.com/user-attachments/assets/6fd70af8-f567-40d2-90c8-7442462566c0" alt="동작기록" width="450">
 
 
 ## 색상테마(다크모드,라이트모드)
